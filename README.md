@@ -10,10 +10,27 @@
 ## 📖 Sobre o Projeto | About the Project
 
 **[PT-BR]**  
-Sistema de revisão interativo desenvolvido especialmente para alunos do 3º ano do Ensino Médio que se preparam para o ENEM. Apresenta 54 questões de inglês em formato de flashcards, com alternativas múltiplas (A-E) no padrão da prova, além de dicas valiosas para o dia do exame.
+Sistema de revisão interativo desenvolvido especialmente para alunos do 3º ano do Ensino Médio que se preparam para o ENEM. Apresenta **20 questões autênticas** de provas reais do ENEM (2016-2024) em formato de flashcards, com alternativas múltiplas (A-E) no padrão oficial da prova, além de dicas valiosas para o dia do exame.
 
 **[EN-US]**  
-Interactive review system designed specifically for 3rd-year high school students preparing for ENEM (Brazilian National High School Exam). Features 54 English questions in flashcard format with multiple-choice answers (A-E) following the official exam pattern, plus valuable exam-day tips.
+Interactive review system designed specifically for 3rd-year high school students preparing for ENEM (Brazilian National High School Exam). Features **20 authentic questions** from real ENEM exams (2016-2024) in flashcard format with multiple-choice answers (A-E) following the official exam pattern, plus valuable exam-day tips.
+
+### 📚 Fontes Autênticas | Authentic Sources
+
+Todas as questões foram coletadas de fontes verificáveis e confiáveis:
+
+**Fontes Oficiais e Educacionais:**
+- **INEP** - Instituto Nacional de Estudos e Pesquisas Educacionais (provas oficiais ENEM)
+- **Toda Matéria** - [todamateria.com.br](https://www.todamateria.com.br/interpretacao-de-texto-em-ingles-com-gabarito-enem/)
+- **Aprova Total** - [aprovatotal.com.br](https://aprovatotal.com.br/questoes-ingles-enem/)
+- **International School** - [internationalschool.global](https://internationalschool.global/)
+
+**Características das Questões:**
+- ✅ Textos autênticos (poemas publicados, notícias, cartuns, artigos)
+- ✅ Questões em português testando compreensão do inglês
+- ✅ Foco em interpretação textual (sem gramática isolada)
+- ✅ Formato oficial ENEM: 5 alternativas (A-E)
+- ✅ Gabaritos e explicações verificados
 
 ---
 
@@ -21,9 +38,11 @@ Interactive review system designed specifically for 3rd-year high school student
 
 ### 🎯 Core Features
 
-- ✅ **54 Questões Reais** / 54 Real Questions
-  - Baseadas no padrão ENEM de interpretação de texto
-  - Based on ENEM reading comprehension patterns
+- ✅ **20 Questões Autênticas** / 20 Authentic Questions
+  - Questões reais de provas ENEM 2016-2024
+  - Real questions from ENEM exams 2016-2024
+  - Textos de fontes verificáveis (BBC, USA Today, poetas publicados, etc)
+  - Texts from verifiable sources (BBC, USA Today, published poets, etc)
   
 - 🔄 **Sistema Bilíngue** / Bilingual System
   - Alternância instantânea PT-BR ⇄ EN-US
