@@ -30,6 +30,11 @@ const translations = {
     // Buttons
     submitAnswer: 'Verificar Resposta',
     nextQuestion: 'Próxima Questão',
+    previous: 'Anterior',
+    next: 'Próxima',
+    jumpToQuestion: 'Ir para:',
+    questionLanguage: 'Idioma da Questão:',
+    optionsLanguage: 'Idioma das Opções:',
     showExplanation: 'Ver Explicação',
     finish: 'Finalizar Revisão',
     
@@ -280,6 +285,11 @@ const translations = {
     // Buttons
     submitAnswer: 'Check Answer',
     nextQuestion: 'Next Question',
+    previous: 'Previous',
+    next: 'Next',
+    jumpToQuestion: 'Jump to:',
+    questionLanguage: 'Question Language:',
+    optionsLanguage: 'Options Language:',
     showExplanation: 'Show Explanation',
     finish: 'Finish Review',
     

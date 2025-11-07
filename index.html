@@ -92,12 +92,46 @@
           <!-- Question Header -->
           <div class="question-header">
             <div class="question-progress" id="question-progress">
-              Questão 1 de 54
+              Questão 1 de 20
             </div>
             <div class="question-meta">
               <span class="category-badge" id="question-category">Category</span>
               <span class="difficulty-badge medium" id="question-difficulty">Medium</span>
             </div>
+          </div>
+          
+          <!-- Language Controls (Dual Toggle) -->
+          <div class="language-controls">
+            <div class="language-control-group">
+              <span class="control-label"><span data-i18n="questionLanguage">Idioma da Questão:</span></span>
+              <div class="toggle-buttons">
+                <button class="question-lang-btn active" data-lang="pt">PT</button>
+                <button class="question-lang-btn" data-lang="en">EN</button>
+              </div>
+            </div>
+            <div class="language-control-group">
+              <span class="control-label"><span data-i18n="optionsLanguage">Idioma das Opções:</span></span>
+              <div class="toggle-buttons">
+                <button class="options-lang-btn active" data-lang="pt">PT</button>
+                <button class="options-lang-btn" data-lang="en">EN</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation Controls -->
+          <div class="navigation-controls">
+            <button class="nav-btn" id="prev-question-btn" title="Questão Anterior" disabled>
+              ← <span data-i18n="previous">Anterior</span>
+            </button>
+            <div class="question-selector-wrapper">
+              <span data-i18n="jumpToQuestion">Ir para:</span>
+              <select id="question-selector" class="question-selector">
+                <!-- Options populated by JavaScript -->
+              </select>
+            </div>
+            <button class="nav-btn" id="next-question-nav-btn" title="Próxima Questão" onclick="nextQuestion()" style="display:none;">
+              <span data-i18n="next">Próxima</span> →
+            </button>
           </div>
           
           <!-- Question Text -->

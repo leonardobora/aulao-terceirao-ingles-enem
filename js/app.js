@@ -8,7 +8,9 @@ const appState = {
   selectedAnswer: null,
   answerSubmitted: false,
   score: 0,
-  answers: [] // Store user answers for review
+  answers: [], // Store user answers for review
+  questionLang: 'pt', // 'pt' or 'en' - Language for question text
+  optionsLang: 'pt'   // 'pt' or 'en' - Language for answer options
 };
 
 // Initialize application
@@ -28,12 +30,32 @@ function initApp() {
 
 // Setup all event listeners
 function setupEventListeners() {
-  // Language toggle
+  // UI Language toggle (header)
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
       setLanguage(lang);
       updateCurrentQuestion(); // Refresh question display
+    });
+  });
+  
+  // Question text language toggle
+  document.querySelectorAll('.question-lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      appState.questionLang = lang;
+      updateQuestionLangButtons();
+      updateCurrentQuestion();
+    });
+  });
+  
+  // Options language toggle
+  document.querySelectorAll('.options-lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      appState.optionsLang = lang;
+      updateOptionsLangButtons();
+      updateCurrentQuestion();
     });
   });
   
@@ -46,11 +68,39 @@ function setupEventListeners() {
   // Question interface buttons
   document.getElementById('submit-answer-btn')?.addEventListener('click', submitAnswer);
   document.getElementById('next-question-btn')?.addEventListener('click', nextQuestion);
+  document.getElementById('prev-question-btn')?.addEventListener('click', prevQuestion);
   document.getElementById('restart-review-btn')?.addEventListener('click', restartReview);
+  
+  // Question number selector
+  document.getElementById('question-selector')?.addEventListener('change', (e) => {
+    jumpToQuestion(parseInt(e.target.value));
+  });
   
   // Option selection
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.addEventListener('click', () => selectOption(btn));
+  });
+}
+
+// Update question language toggle buttons
+function updateQuestionLangButtons() {
+  document.querySelectorAll('.question-lang-btn').forEach(btn => {
+    if (btn.getAttribute('data-lang') === appState.questionLang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+// Update options language toggle buttons
+function updateOptionsLangButtons() {
+  document.querySelectorAll('.options-lang-btn').forEach(btn => {
+    if (btn.getAttribute('data-lang') === appState.optionsLang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
   });
 }
 
@@ -80,16 +130,39 @@ function startReview() {
   appState.answers = [];
   appState.selectedAnswer = null;
   appState.answerSubmitted = false;
+  appState.questionLang = 'pt'; // Default to Portuguese for questions
+  appState.optionsLang = 'pt';  // Default to Portuguese for options
   
   showScreen('question');
+  updateQuestionLangButtons();
+  updateOptionsLangButtons();
+  populateQuestionSelector();
   updateCurrentQuestion();
+}
+
+// Populate question number selector
+function populateQuestionSelector() {
+  const selector = document.getElementById('question-selector');
+  if (selector) {
+    selector.innerHTML = '';
+    appState.shuffledQuestions.forEach((q, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = `${index + 1}`;
+      selector.appendChild(option);
+    });
+  }
 }
 
 // Render current question
 function updateCurrentQuestion() {
   const question = appState.shuffledQuestions[appState.currentQuestionIndex];
   const lang = getCurrentLanguage();
-  const langSuffix = lang === 'pt-br' ? 'pt' : 'en';
+  const uiLangSuffix = lang === 'pt-br' ? 'pt' : 'en';
+  
+  // Use separate language settings for question and options
+  const questionLangSuffix = appState.questionLang;
+  const optionsLangSuffix = appState.optionsLang;
   
   // Update progress
   const progress = document.getElementById('question-progress');
@@ -98,21 +171,37 @@ function updateCurrentQuestion() {
     total: appState.shuffledQuestions.length
   });
   
+  // Update question selector
+  const selector = document.getElementById('question-selector');
+  if (selector) {
+    selector.value = appState.currentQuestionIndex;
+  }
+  
+  // Update navigation buttons
+  const prevBtn = document.getElementById('prev-question-btn');
+  const nextBtn = document.getElementById('next-question-btn');
+  if (prevBtn) {
+    prevBtn.disabled = appState.currentQuestionIndex === 0;
+  }
+  if (nextBtn && !appState.answerSubmitted) {
+    nextBtn.classList.add('hidden');
+  }
+  
   // Update category and difficulty
   document.getElementById('question-category').textContent = question.category;
   const difficultyBadge = document.getElementById('question-difficulty');
   difficultyBadge.textContent = t(`difficulty${question.difficulty}`);
   difficultyBadge.className = `difficulty-badge ${question.difficulty.toLowerCase()}`;
   
-  // Update text
-  document.getElementById('question-text').textContent = question[`text_${langSuffix}`];
-  document.getElementById('question-question').textContent = question[`question_${langSuffix}`];
+  // Update text using question language
+  document.getElementById('question-text').textContent = question[`text_${questionLangSuffix}`];
+  document.getElementById('question-question').textContent = question[`question_${questionLangSuffix}`];
   
-  // Update options
+  // Update options using options language
   const options = ['a', 'b', 'c', 'd', 'e'];
   options.forEach(opt => {
     const btn = document.getElementById(`option-${opt}`);
-    btn.textContent = `${opt.toUpperCase()}) ${question[`option_${opt}_${langSuffix}`]}`;
+    btn.textContent = `${opt.toUpperCase()}) ${question[`option_${opt}_${optionsLangSuffix}`]}`;
     btn.className = 'option-btn';
     btn.disabled = false;
   });
@@ -122,7 +211,6 @@ function updateCurrentQuestion() {
   appState.answerSubmitted = false;
   document.getElementById('feedback-section').classList.remove('show');
   document.getElementById('submit-answer-btn').classList.remove('hidden');
-  document.getElementById('next-question-btn').classList.add('hidden');
 }
 
 // Select an option
@@ -218,6 +306,22 @@ function nextQuestion() {
   if (appState.currentQuestionIndex >= appState.shuffledQuestions.length) {
     showResults();
   } else {
+    updateCurrentQuestion();
+  }
+}
+
+// Previous question
+function prevQuestion() {
+  if (appState.currentQuestionIndex > 0) {
+    appState.currentQuestionIndex--;
+    updateCurrentQuestion();
+  }
+}
+
+// Jump to specific question
+function jumpToQuestion(index) {
+  if (index >= 0 && index < appState.shuffledQuestions.length) {
+    appState.currentQuestionIndex = index;
     updateCurrentQuestion();
   }
 }
