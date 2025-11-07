@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema interativo de revisão de inglês para o ENEM - Interactive ENEM English Review System">
+  <meta name="keywords" content="ENEM, English, Inglês, Revisão, Review, Flashcards, Terceirão, High School">
+  <meta name="author" content="ENEM English Prep">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="ENEM English Review - Interactive Flashcard System">
+  <meta property="og:description" content="54 English questions in flashcard format for ENEM preparation">
+  <meta property="og:type" content="website">
+  
+  <title>Revisão de Inglês - ENEM 2024 | ENEM English Review</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="header-title">
+          <h1 data-i18n="appTitle">Revisão de Inglês - ENEM 2024</h1>
+          <p data-i18n="appSubtitle">Aulão para o Terceirão</p>
+        </div>
+        <div class="language-toggle">
+          <button class="lang-btn active" data-lang="pt-br">PT-BR</button>
+          <button class="lang-btn" data-lang="en-us">EN-US</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- ============================================
+       MAIN CONTENT
+       ============================================ -->
+  <main class="main-content">
+    
+    <!-- HOME SCREEN -->
+    <section id="home-screen" class="screen active">
+      <div class="container container-sm">
+        <div class="home-hero">
+          <h2>🎓 Bem-vindo(a) à Revisão de Inglês!</h2>
+          <p>Sistema de flashcards com 54 questões reais no padrão ENEM. Pratique, aprenda e conquiste sua vaga!</p>
+          
+          <div class="home-actions">
+            <button id="start-review-btn" class="btn btn-primary" data-i18n="startReview">
+              Iniciar Revisão
+            </button>
+            <button id="show-tips-btn" class="btn btn-secondary" data-i18n="examTips">
+              Dicas para a Prova
+            </button>
+          </div>
+        </div>
+        
+        <!-- Features -->
+        <div style="margin-top: 3rem; text-align: center;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📖</div>
+              <h3 style="color: #4F46E5; margin-bottom: 0.5rem;">54 Questões</h3>
+              <p style="color: #6B7280; margin: 0;">Baseadas no padrão ENEM de interpretação</p>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🌍</div>
+              <h3 style="color: #4F46E5; margin-bottom: 0.5rem;">Bilíngue</h3>
+              <p style="color: #6B7280; margin: 0;">PT-BR ⇄ EN-US com um clique</p>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💡</div>
+              <h3 style="color: #4F46E5; margin-bottom: 0.5rem;">Dicas Completas</h3>
+              <p style="color: #6B7280; margin: 0;">Estratégias para o dia do exame</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- QUESTION SCREEN -->
+    <section id="question-screen" class="screen">
+      <div class="container container-sm">
+        <div class="question-card">
+          <!-- Question Header -->
+          <div class="question-header">
+            <div class="question-progress" id="question-progress">
+              Questão 1 de 54
+            </div>
+            <div class="question-meta">
+              <span class="category-badge" id="question-category">Category</span>
+              <span class="difficulty-badge medium" id="question-difficulty">Medium</span>
+            </div>
+          </div>
+          
+          <!-- Question Text -->
+          <div class="question-text-section">
+            <p class="question-text" id="question-text">
+              Question text will appear here...
+            </p>
+            <p class="question-question" id="question-question">
+              What is the main idea of this text?
+            </p>
+          </div>
+          
+          <!-- Options -->
+          <div class="options-container">
+            <button class="option-btn" id="option-a">A) Option A</button>
+            <button class="option-btn" id="option-b">B) Option B</button>
+            <button class="option-btn" id="option-c">C) Option C</button>
+            <button class="option-btn" id="option-d">D) Option D</button>
+            <button class="option-btn" id="option-e">E) Option E</button>
+          </div>
+          
+          <!-- Feedback Section -->
+          <div class="feedback-section" id="feedback-section">
+            <p class="feedback-title" id="feedback-title">✅ Correto!</p>
+            <p class="feedback-correct-answer hidden" id="feedback-correct-answer">
+              Resposta correta: B)
+            </p>
+            <p class="feedback-explanation" id="feedback-explanation">
+              <strong>Explicação:</strong> This is the explanation...
+            </p>
+          </div>
+          
+          <!-- Actions -->
+          <div class="question-actions">
+            <button class="btn btn-primary" id="submit-answer-btn" data-i18n="submitAnswer">
+              Verificar Resposta
+            </button>
+            <button class="btn btn-success hidden" id="next-question-btn" data-i18n="nextQuestion">
+              Próxima Questão
+            </button>
+          </div>
+        </div>
+        
+        <!-- Back to Home Button -->
+        <div style="text-align: center; margin-top: 2rem;">
+          <button class="btn btn-secondary" id="back-to-home-btn" data-i18n="backToHome">
+            Voltar ao Início
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- RESULTS SCREEN -->
+    <section id="results-screen" class="screen">
+      <div class="container container-sm">
+        <div class="results-card">
+          <h2 data-i18n="congratulations">🎉 Parabéns!</h2>
+          <p data-i18n="reviewComplete">Você completou a revisão!</p>
+          
+          <div class="results-score">
+            <p id="final-score">48 respostas corretas de 54</p>
+            <p class="percentage" id="final-percentage">Aproveitamento: 89%</p>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <button class="btn btn-primary" id="restart-review-btn" data-i18n="restartReview">
+              Reiniciar Revisão
+            </button>
+            <button class="btn btn-secondary" onclick="showScreen('home')" data-i18n="backToHome">
+              Voltar ao Início
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- TIPS SCREEN -->
+    <section id="tips-screen" class="screen">
+      <div class="container">
+        <div class="tips-header">
+          <button class="btn btn-secondary" id="back-to-home-from-tips-btn" data-i18n="backToHome" style="margin-bottom: 2rem;">
+            Voltar ao Início
+          </button>
+        </div>
+        
+        <!-- Tips content will be dynamically generated by JavaScript -->
+        <div id="tips-content" class="tips-content">
+          <!-- Content inserted by app.js renderTipsContent() -->
+        </div>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footerText">Desenvolvido com 💙 para alunos do 3º ano | Boa sorte no ENEM!</p>
+      <p><small data-i18n="githubPages">Hospedado no GitHub Pages</small></p>
+    </div>
+  </footer>
+  
+  <!-- ============================================
+       SCRIPTS
+       ============================================ -->
+  <!-- Load in order: data -> i18n -> app -->
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  
+</body>
+</html>
