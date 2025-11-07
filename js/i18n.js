@@ -4,7 +4,7 @@
 const translations = {
   'pt-br': {
     // Header
-    appTitle: 'Revisão de Inglês - ENEM 2024',
+    appTitle: 'Revisão de Inglês - ENEM 2025',
     appSubtitle: 'Aulão para o Terceirão',
     
     // Navigation
@@ -259,7 +259,7 @@ const translations = {
   
   'en-us': {
     // Header
-    appTitle: 'ENEM English Review - 2024',
+    appTitle: 'ENEM English Review - 2025',
     appSubtitle: 'Senior Year Intensive',
     
     // Navigation

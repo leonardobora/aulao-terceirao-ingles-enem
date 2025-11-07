@@ -166,6 +166,36 @@ strong {
   margin-bottom: 0;
 }
 
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.header-link {
+  color: white;
+  opacity: 0.9;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-md);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.header-link:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.header-link svg {
+  width: 24px;
+  height: 24px;
+}
+
 .language-toggle {
   display: flex;
   gap: var(--spacing-sm);
